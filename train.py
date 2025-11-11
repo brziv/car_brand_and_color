@@ -38,9 +38,14 @@ def run_epoch(model, dataloader, criterion, optimizer=None, mode="Train"):
     
     epoch_loss = running_loss / total_samples
     epoch_acc = running_corrects / total_samples * 100
-    precision = precision_score(all_labels, all_preds, average='macro') * 100
-    recall = recall_score(all_labels, all_preds, average='macro') * 100
-    f1 = f1_score(all_labels, all_preds, average='macro') * 100
+
+    # precision = precision_score(all_labels, all_preds, average='macro') * 100
+    # recall = recall_score(all_labels, all_preds, average='macro') * 100
+    # f1 = f1_score(all_labels, all_preds, average='macro') * 100
+    precision = precision_score(all_labels, all_preds, average='weighted', zero_division=0) * 100
+    recall = recall_score(all_labels, all_preds, average='weighted', zero_division=0) * 100
+    f1 = f1_score(all_labels, all_preds, average='weighted', zero_division=0) * 100
+    
     conf_matrix = confusion_matrix(all_labels, all_preds)
     
     return epoch_loss, epoch_acc, precision, recall, f1, conf_matrix

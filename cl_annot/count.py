@@ -1,14 +1,14 @@
 from collections import Counter
 import matplotlib.pyplot as plt
 
-with open("merged.txt", "r", encoding="utf-8") as merged:
+with open("full.txt", "r", encoding="utf-8") as merged:
     lines = [line.split() for line in merged]
 
 labels = [int(parts[-1]) for parts in lines]
 
 count = Counter(labels)
 
-with open("synsets.txt", "r", encoding="utf-8") as synset:
+with open("color.txt", "r", encoding="utf-8") as synset:
     brands = [brand.strip() for brand in synset]
 
 for i, brand in enumerate(brands):
@@ -21,5 +21,5 @@ plt.figure(figsize=(10,6))
 plt.bar(x, y, color='skyblue')
 plt.xticks(x, brands, rotation=45, ha='right')
 plt.tight_layout()
-plt.savefig("test.png", dpi=300)
+plt.savefig("colors.png", dpi=300)
 plt.close()
