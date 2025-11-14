@@ -13,11 +13,11 @@ model = models.efficientnet_v2_s(weights=models.EfficientNet_V2_S_Weights.IMAGEN
 model.classifier[1] = torch.nn.Linear(model.classifier[1].in_features, num_classes)
 
 # Load trained weights
-model.load_state_dict(torch.load("enetv2s.pth", map_location="cpu"))
+model.load_state_dict(torch.load("../enetv2s.pth", map_location="cpu"))
 model.eval()
 
 # class names
-with open("annot/brand.txt", "r", encoding="utf-8") as f:
+with open("../annot/brand.txt", "r", encoding="utf-8") as f:
     class_names = [line.strip() for line in f if line.strip()]
 
 # ------------------ Hooks for Grad-CAM ------------------

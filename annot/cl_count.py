@@ -17,6 +17,9 @@ for i, brand in enumerate(brands):
 x = range(len(brands))
 y = [count.get(i, 0) for i in x]
 
+sorted_pairs = sorted(zip(brands, y), key=lambda p: p[1], reverse=True)
+brands, y = zip(*sorted_pairs)
+
 plt.figure(figsize=(10,6))
 plt.bar(x, y, color='skyblue')
 plt.xticks(x, brands, rotation=45, ha='right')

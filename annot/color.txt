@@ -1,6 +1,0 @@
-white
-black
-silver_gray
-red
-blue
-other

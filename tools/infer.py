@@ -5,10 +5,10 @@ import cv2
 import torch
 
 # model & config
-model_path = "enetv2s.onnx"
+model_path = "../enetv2s.onnx"
 input_size = 224
 
-with open("annot/brand.txt", "r", encoding="utf-8") as f:
+with open("../annot/brand.txt", "r", encoding="utf-8") as f:
     class_names = [line.strip() for line in f if line.strip()]
 
 # load onnx

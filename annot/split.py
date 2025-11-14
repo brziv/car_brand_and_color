@@ -1,6 +1,6 @@
 from sklearn.model_selection import train_test_split
 
-with open("full.txt", "r") as f:
+with open("full_label.txt", "r") as f:
     lines = [line.strip() for line in f]
 
 labels = [line.strip().split()[-1] for line in lines]

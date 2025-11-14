@@ -1,0 +1,10 @@
+white
+black
+silver/gray
+red
+blue
+cyan
+green
+orange
+yellow
+other
