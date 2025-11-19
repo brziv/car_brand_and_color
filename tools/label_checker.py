@@ -1,13 +1,11 @@
 import streamlit as st
 import os
 from PIL import Image
-import json
 
 # Paths
 images_by_color_dir = '../images_by_color'
 full_pslabel_txt = '../annot/full_pslabel.txt'
 full_status_txt = '../annot/full_status.txt'
-corrected_labels_file = '../annot/corrected_labels.json'
 
 # Load colors
 with open('../annot/cl_list.txt', 'r') as f:
@@ -50,20 +48,9 @@ for parts in status_data:
     labels[img_name] = color_label
     statuses[img_name] = status
 
-# Load corrected labels if exists
-if os.path.exists(corrected_labels_file):
-    with open(corrected_labels_file, 'r') as f:
-        corrected_labels = json.load(f)
-else:
-    corrected_labels = {}
-
 # Function to save corrected labels and update status
 def save_corrected_labels_and_status(img_name, new_label):
-    corrected_labels[img_name] = new_label
     statuses[img_name] = 'yes'
-    
-    with open(corrected_labels_file, 'w') as f:
-        json.dump(corrected_labels, f, indent=4)
     
     # Update full_status.txt
     lines = []
@@ -117,6 +104,11 @@ if images:
     img_path = os.path.join(color_folder, current_image)
     img = Image.open(img_path)
     
+    # Set default selected label to current label when image changes
+    if 'last_image' not in st.session_state or st.session_state.last_image != current_image:
+        st.session_state.selected_label = labels.get(current_image, -1)
+        st.session_state.last_image = current_image
+    
     with left_col:
         st.image(img, caption=f"{current_image} ({st.session_state.current_index + 1}/{len(images)})", width='stretch')
 
@@ -159,7 +151,6 @@ if images:
             if 'selected_label' in st.session_state:
                 save_corrected_labels_and_status(current_image, st.session_state.selected_label)
                 st.success(f"✓ Saved: {colors[st.session_state.selected_label]}")
-                del st.session_state.selected_label  # reset
                 st.rerun()  # Refresh to update the list
             else:
                 st.warning("Please select a label first")

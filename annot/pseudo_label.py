@@ -13,7 +13,7 @@ INPUT_TXT = "/ssd1/team_thuctap/ntthai/car_brand_and_color/annot/br_label.txt"
 OUTPUT_TXT = "/ssd1/team_thuctap/ntthai/car_brand_and_color/annot/full_pslabel.txt"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-LABELS = ["white", "black", "silver or gray", "red", "blue", "cyan", "green", "orange", "yellow", "other than white, black, silver, gray, red, blue, cyan, green, orange, yellow"]
+LABELS = ["white", "black", "silver or gray", "red", "blue"]
 LIMIT = 10  # test 10 first
 
 # CLIP pseudo-label
@@ -25,7 +25,7 @@ def run_clip_large(image_paths):
 
     clip_labels = {}
 
-    text_prompts = [f"a photograph of a car with a dominant color of {label}" for label in LABELS]
+    text_prompts = [f"a photograph of a car whose color is {label}" for label in LABELS]
     with torch.no_grad():
         text_inputs = processor(text=text_prompts, return_tensors="pt", padding=True).to(DEVICE)
         text_features = model.get_text_features(**text_inputs)
