@@ -1,8 +1,8 @@
 # folders
 __pycache__/
 images/
-images_by_color/
-images_done/
+colors_ps/
+colors_done/
 results/
 
 # files

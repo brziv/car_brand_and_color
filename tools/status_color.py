@@ -6,9 +6,9 @@ with open('../annot/cl_list.txt', 'r') as f:
     colors = [line.strip() for line in f.readlines()]
 
 # Create folders for each color
-os.makedirs('../images_done', exist_ok=True)
+os.makedirs('../colors_done', exist_ok=True)
 for color in colors:
-    os.makedirs(f'../images_done/{color}', exist_ok=True)
+    os.makedirs(f'../colors_done/{color}', exist_ok=True)
 
 # Read full.txt and organize images
 with open('../annot/full_status.txt', 'r') as f:
@@ -20,7 +20,7 @@ with open('../annot/full_status.txt', 'r') as f:
             color_name = colors[color_label]
             
             src_path = f'../images/{img_name}'
-            dst_path = f'../images_done/{color_name}/{img_name}'
+            dst_path = f'../colors_done/{color_name}/{img_name}'
             
             if os.path.exists(src_path):
                 shutil.copy(src_path, dst_path)

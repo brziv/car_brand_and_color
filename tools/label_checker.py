@@ -3,7 +3,7 @@ import os
 from PIL import Image
 
 # Paths
-images_by_color_dir = '../images_by_color'
+images_by_color_dir = '../colors_ps'
 full_pslabel_txt = '../annot/full_pslabel.txt'
 full_status_txt = '../annot/full_status.txt'
 
