@@ -3,7 +3,7 @@ import shutil
 
 # Read color labels
 with open('../annot/cl_list.txt', 'r') as f:
-    colors = [line.strip() for line in f.readlines()]
+    colors = [line.strip() for line in f.readlines()[:5]]
 
 # Create folders for each color
 os.makedirs('../images_by_color', exist_ok=True)
@@ -11,12 +11,12 @@ for color in colors:
     os.makedirs(f'../images_by_color/{color}', exist_ok=True)
 
 # Read full.txt and organize images
-with open('../annot/full_status.txt', 'r') as f:
+with open('../annot/full_pslabel.txt', 'r') as f:
     for line in f:
         parts = line.strip().split()
         if len(parts) >= 3:
-            img_name = ' '.join(parts[:-3])  # image name
-            color_label = int(parts[-2])  # color label
+            img_name = ' '.join(parts[:-2])  # image name
+            color_label = int(parts[-1])  # color label
             color_name = colors[color_label]
             
             src_path = f'../images/{img_name}'
