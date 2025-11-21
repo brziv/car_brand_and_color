@@ -44,8 +44,6 @@ def get_model(name, num_classes_brand, num_classes_color):
             model = models.efficientnet_b1(weights=models.EfficientNet_B1_Weights.IMAGENET1K_V2)
         elif name == "efficientnet_b2":
             model = models.efficientnet_b2(weights=models.EfficientNet_B2_Weights.IMAGENET1K_V1)
-        elif name == "efficientnet_v2_s":
-            model = models.efficientnet_v2_s(weights=models.EfficientNet_V2_S_Weights.IMAGENET1K_V1)
         else:
             raise ValueError(f"Unknown model name: {name}")
         

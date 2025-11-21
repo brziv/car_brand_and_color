@@ -11,9 +11,20 @@ num_classes_color = 10
 max_steps = 50
 lr = 1e-4
 model_names = [
-    "resnet50", "resnext50",
-    "regnet_x_1_6gf", "regnet_y_1_6gf", "regnet_x_3_2gf", "regnet_y_3_2gf", "regnet_x_800mf", "regnet_y_800mf",
-    "densenet121"
+    "convnext_tiny",   # 28.6M
+    "swin_t",          # 28.3M
+    "resnet50",        # 25.6M
+    "resnext50",       # 25.0M
+    "regnet_y_3_2gf",  # 19.4M
+    "regnet_x_3_2gf",  # 15.3M
+    "regnet_y_1_6gf",  # 11.2M
+    "regnet_x_1_6gf",  # 9.2M
+    "efficientnet_b2", # 9.1M
+    "densenet121",     # 8.0M
+    "efficientnet_b1", # 7.8M
+    "regnet_x_800mf",  # 7.3M
+    "regnet_y_800mf",  # 6.4M
+    "efficientnet_b0"  # 5.3M
 ]
 
 # train one batch
